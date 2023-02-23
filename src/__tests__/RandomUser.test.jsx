@@ -7,12 +7,11 @@ jest.mock("axios");
 describe("<RandomUser/>", () => {
   it("loads a user", async () => {
     const { first, last } = FAKE_USER_RESPONSE.results[0].name;
+    render(<RandomUser />);
+    const button = screen.getByRole("button");
     axios.get.mockResolvedValue({
       data: FAKE_USER_RESPONSE,
     });
-    render(<RandomUser />);
-
-    const button = screen.getByRole("button");
     fireEvent.click(button);
     const titleEl = await screen.findByRole("heading", { level: 2 });
     expect(titleEl.textContent).toBe(first + " " + last);
