@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { add, divide, multiply, substract } from "utils/math-functions";
+import { sum, divide, multiply, substract } from "utils/math-functions";
 
 export function Calculator() {
   const [inputValueA, setInputValueA] = useState(0);
@@ -14,7 +14,7 @@ export function Calculator() {
   function getResult() {
     switch (operator) {
       case "+":
-        return add(valueA, valueB);
+        return sum(valueA, valueB);
       case "-":
         return substract(valueA, valueB);
       case "x":
