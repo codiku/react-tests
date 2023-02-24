@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { wum, divide, multiply, substract } from "utils/math-functions";
+import { sum, divide, multiply, substract } from "utils/math-functions";
 
 export function Calculator() {
   const [inputValueA, setInputValueA] = useState(0);
   const [inputValueB, setInputValueB] = useState(0);
   const [operator, setOperator] = useState("+");
 
-  // We need that when the input is empty, we want to display 0 in the calculation
+  // We need that because we don't want to write "0"
+  //in the input when it's empty
   const valueA = inputValueA || 0;
   const valueB = inputValueB || 0;
 
@@ -36,7 +37,7 @@ export function Calculator() {
       type="number"
       value={inputValueA}
       onChange={(e) =>
-        setInputValueA(e.target.value || Number.parseInt(e.target.value))
+        setInputValueA(e.target.value ? Number.parseInt(e.target.value) : "")
       }
     />
   );
@@ -46,7 +47,7 @@ export function Calculator() {
       type="number"
       value={inputValueB}
       onChange={(e) =>
-        setInputValueB(e.target.value || Number.parseInt(e.target.value))
+        setInputValueB(e.target.value ? Number.parseInt(e.target.value) : "")
       }
     />
   );
