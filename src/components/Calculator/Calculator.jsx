@@ -44,9 +44,9 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
       data-testid="inputA"
       type="number"
       value={inputValueA}
-      onChange={(e) =>
-        setInputValueA(e.target.value ? Number.parseInt(e.target.value) : "")
-      }
+      onChange={(e) => {
+        setInputValueA(e.target.value ? Number.parseInt(e.target.value) : "");
+      }}
     />
   );
 
