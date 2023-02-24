@@ -82,7 +82,7 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
       {renderSelectBox()}
       {renderInputB()}
       <h2 style={{ marginTop: 20 }}>Result</h2>
-      <span>{getResult()}</span>
+      {getResult()}
     </>
   );
 }
