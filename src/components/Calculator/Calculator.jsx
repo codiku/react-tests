@@ -41,7 +41,6 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
   }
   const renderInputA = () => (
     <input
-      data-testid="inputA"
       type="number"
       value={inputValueA}
       onChange={(e) =>
@@ -52,7 +51,6 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
 
   const renderInputB = () => (
     <input
-      data-testid="inputB"
       type="number"
       value={inputValueB}
       onChange={(e) =>
@@ -68,7 +66,6 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
         onChange={(e) => setOperator(e.target.value)}
         className="form-select"
         aria-label="Operator"
-        data-testid="operator"
       >
         <option value="+">+</option>
         <option value="-">-</option>
@@ -85,7 +82,7 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
       {renderSelectBox()}
       {renderInputB()}
       <h2 style={{ marginTop: 20 }}>Result</h2>
-      <span data-testid="result">{getResult()}</span>
+      <span>{getResult()}</span>
     </>
   );
 }

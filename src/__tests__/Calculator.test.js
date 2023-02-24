@@ -4,7 +4,6 @@ import { Calculator } from "components/Calculator/Calculator";
 describe("<Calculator/>", () => {
   it("has 'Calculator' displayed somewhere", () => {
     render(<Calculator />);
-    //screen.debug();
     const textElement = screen.getByText("Calculator");
     expect(textElement.textContent).toBe("Calculator");
   });
