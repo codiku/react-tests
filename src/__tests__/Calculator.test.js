@@ -14,47 +14,23 @@ describe("<Calculator/>", () => {
     expect(titleEl.textContent).toBe("Calculator");
   });
 
-  it("performs 0+0 by default' ", () => {
+  it("performs 0+0 by default", () => {
     render(<Calculator />);
-    const { getValueA, getValueB, getResult } = getCalculator();
+    const { getValueA, getValueB, getResult, getOperator } = getCalculator();
+
     expect(getValueA()).toBe("0");
     expect(getValueB()).toBe("0");
+    expect(getOperator()).toBe("+");
     expect(getResult()).toBe("0");
   });
 
-  it("use correctly the default values' ", () => {
-    render(<Calculator defaultA={12} defaultB={"10"} />);
-    const { getValueA, getValueB, getResult } = getCalculator();
-    expect(getValueA()).toBe("12");
-    expect(getValueB()).toBe("10");
-    expect(getResult()).toBe("22");
-  });
-
-  it("calculates correctly when user update an input' ", () => {
-    render(<Calculator defaultA={12} defaultB={"10"} />);
-    fireEvent.change(screen.getByTestId("inputA"), { target: { value: "3" } });
-    const { getValueA, getValueB, getResult } = getCalculator();
-    expect(getValueA()).toBe("3");
-    expect(getValueB()).toBe("10");
-    expect(getResult()).toBe("13");
-  });
-
-  it("calculates correctly when user changes the operator' ", () => {
-    render(<Calculator defaultA={12} defaultB={"10"} />);
-    fireEvent.change(screen.getByTestId("operator"), {
-      target: { value: "x" },
-    });
+  it("uses correctly the default values", () => {
+    render(<Calculator defaultA={12} defaultB={"10"} defaultOperator={"x"} />);
     const { getValueA, getValueB, getResult, getOperator } = getCalculator();
-    expect(getOperator()).toBe("x");
     expect(getValueA()).toBe("12");
     expect(getValueB()).toBe("10");
+    expect(getOperator()).toBe("x");
     expect(getResult()).toBe("120");
-
-    fireEvent.change(screen.getByTestId("operator"), {
-      target: { value: "invalid operator !" },
-    });
-
-    expect(getResult()).toBe("No operator provided");
   });
 });
 

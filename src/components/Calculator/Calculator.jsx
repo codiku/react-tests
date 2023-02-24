@@ -64,6 +64,7 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
   const renderSelectBox = () => (
     <div>
       <select
+        data-testid="operator"
         value={operator}
         onChange={(e) => setOperator(e.target.value)}
         className="form-select"
