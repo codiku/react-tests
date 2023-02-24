@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { sum, divide, multiply, substract } from "utils/math-functions";
 
-export function Calculator() {
-  const [inputValueA, setInputValueA] = useState(0);
-  const [inputValueB, setInputValueB] = useState(0);
-  const [operator, setOperator] = useState("+");
+const OPERATORS = ["+", "-", "x", "/"];
+export function Calculator({ defaultA, defaultB, defaultOperator }) {
+  const [inputValueA, setInputValueA] = useState(
+    !defaultA || isNaN(defaultA) ? 0 : Number(defaultA)
+  );
+  const [inputValueB, setInputValueB] = useState(
+    !defaultB || isNaN(defaultB) ? 0 : Number(defaultB)
+  );
+  const [operator, setOperator] = useState(
+    OPERATORS.includes(defaultOperator) ? defaultOperator : "+"
+  );
 
   // We need that because we don't want to write "0"
   //in the input when it's empty
@@ -34,6 +41,7 @@ export function Calculator() {
   }
   const renderInputA = () => (
     <input
+      data-testid="inputA"
       type="number"
       value={inputValueA}
       onChange={(e) =>
@@ -44,6 +52,7 @@ export function Calculator() {
 
   const renderInputB = () => (
     <input
+      data-testid="inputB"
       type="number"
       value={inputValueB}
       onChange={(e) =>
@@ -55,9 +64,11 @@ export function Calculator() {
   const renderSelectBox = () => (
     <div>
       <select
+        value={operator}
         onChange={(e) => setOperator(e.target.value)}
         className="form-select"
         aria-label="Operator"
+        data-testid="operator"
       >
         <option value="+">+</option>
         <option value="-">-</option>
@@ -74,7 +85,7 @@ export function Calculator() {
       {renderSelectBox()}
       {renderInputB()}
       <h2 style={{ marginTop: 20 }}>Result</h2>
-      {getResult()}
+      <span data-testid="result">{getResult()}</span>
     </>
   );
 }
