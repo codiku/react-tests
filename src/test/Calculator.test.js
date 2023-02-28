@@ -57,4 +57,23 @@ describe("<Calculator/>", () => {
     render(<Calculator defaultA={1} defaultB={"0"} defaultOperator={"/"} />);
     expect(getResult()).toBe("You can't divide by 0");
   });
+
+  it("displays displays an error when the operator is not provided", () => {
+    render(<Calculator defaultA={1} defaultB={"0"} defaultOperator={"/"} />);
+    fireEvent.change(screen.getByTestId("operator"), {
+      target: { value: "!" },
+    });
+    expect(getResult()).toBe("No operator provided");
+  });
+
+  it("returns 0 when the inputs are empty", () => {
+    render(<Calculator defaultA={1} defaultB={"0"} defaultOperator={"/"} />);
+    fireEvent.change(screen.getByTestId("inputA"), {
+      target: { value: "" },
+    });
+    fireEvent.change(screen.getByTestId("inputB"), {
+      target: { value: "" },
+    });
+    expect(getResult()).toBe("0");
+  });
 });
