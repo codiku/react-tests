@@ -38,8 +38,8 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "moduleNameMapper": {
+  "jest":{
+    "moduleNameMapper":{
       "^axios$": "axios/dist/node/axios.cjs"
     }
   }
