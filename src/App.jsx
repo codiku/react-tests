@@ -3,7 +3,7 @@ import s from "./App.module.css";
 export function App() {
   return (
     <div className={s.root}>
-      <Calculator defaultB={"17.1"} defaultOperator={"-"} />
+      <Calculator defaultA={2} defaultB={"3"} defaultOperator={"+"} />
     </div>
   );
 }

@@ -24,18 +24,28 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
       case "x":
         return multiply(inputValueA, inputValueB);
       case "/":
-        return divide(inputValueA, inputValueB);
+        return divideSafely(inputValueA, inputValueB);
       default:
         return "No operator provided";
     }
   }
+
+  const divideSafely = (a, b) => {
+    try {
+      return divide(a, b);
+    } catch (err) {
+      return err.message;
+    }
+  };
 
   const renderInputA = () => {
     return (
       <input
         value={inputValueA}
         type="number"
-        onChange={(e) => setInputValueA(Number.parseFloat(e.target.value))}
+        onChange={(e) =>
+          setInputValueA(e.target.value ? Number.parseFloat(e.target.value) : 0)
+        }
       />
     );
   };
@@ -45,7 +55,9 @@ export function Calculator({ defaultA, defaultB, defaultOperator }) {
       <input
         value={inputValueB}
         type="number"
-        onChange={(e) => setInputValueB(Number.parseFloat(e.target.value))}
+        onChange={(e) =>
+          setInputValueB(e.target.value ? Number.parseFloat(e.target.value) : 0)
+        }
       />
     );
   };
